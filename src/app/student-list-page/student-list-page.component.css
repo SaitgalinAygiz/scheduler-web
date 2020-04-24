@@ -1,0 +1,12 @@
+
+table {
+  width: 70%;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  background:  #ff4081;
+  color: white;
+}

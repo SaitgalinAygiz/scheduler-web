@@ -1,0 +1,20 @@
+
+
+mat-card {
+  margin: 10rem auto;
+  width: 40em;
+}
+
+.form-fields-container {
+  margin: 0 30%;
+}
+
+
+mat-card-header {
+  font-size: 2rem;
+}
+
+.login-submit-button {
+  padding: 0.3rem 2rem;
+  margin-left: 22%;
+}
