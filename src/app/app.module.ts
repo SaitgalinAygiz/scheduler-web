@@ -26,6 +26,8 @@ import {AuthGuard} from './shared/services/auth.guard';
 import {MatTableModule} from '@angular/material/table';
 import { StudentListPageComponent } from './student-list-page/student-list-page.component';
 import {MatSortModule} from '@angular/material/sort';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import {MatSortModule} from '@angular/material/sort';
     MatInputModule,
     MatCardModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

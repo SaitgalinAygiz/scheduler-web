@@ -1,12 +1,45 @@
+.main-container {
+  width: 100%;
+  margin: 3% auto auto;
+}
+
+mat-form-field {
+  margin: auto;
+  width: 20%;
+  padding: 1em;
+  font-size: larger;
+}
+
+.form-container {
+  margin-left: 25%;
+}
 
 table {
-  width: 70%;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 10%
 }
 
 th {
   background:  #ff4081;
   color: white;
+}
+
+.submit-button {
+  padding: 0 1rem;
+  margin-left: 1rem;
+}
+
+.main-form-fio {
+  width: 20%
+}
+
+.deleteStudentButton {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.mat-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
