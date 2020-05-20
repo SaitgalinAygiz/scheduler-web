@@ -5,13 +5,15 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {StudentGroupsPageComponent} from './student-groups-page/student-groups-page.component';
 import {AuthGuard} from './shared/services/auth.guard';
 import {StudentListPageComponent} from './student-list-page/student-list-page.component';
+import {TeachersPageComponent} from './teachers-page/teachers-page.component';
 
 const routes: Routes = [
   {path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginPageComponent},
       {path: 'groups', component: StudentGroupsPageComponent, canActivate: [AuthGuard]},
-      {path: 'student-list', component: StudentListPageComponent, canActivate: [AuthGuard]}
+      {path: 'student-list', component: StudentListPageComponent, canActivate: [AuthGuard]},
+      {path: 'teachers', component: TeachersPageComponent, canActivate: [AuthGuard]}
     ]
   }
 ];

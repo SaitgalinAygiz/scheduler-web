@@ -50,16 +50,7 @@ export class StudentService {
   }
 
   async deleteStudent(id: string) {
-
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        id
-      },
-    };
-    await this.http.delete(`${environment.serverUrl}/student/delete`, options)
+    await this.http.delete(`${environment.serverUrl}/student/${id}`)
       .toPromise();
   }
 }

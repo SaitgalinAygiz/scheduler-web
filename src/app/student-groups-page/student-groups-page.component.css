@@ -1,12 +1,43 @@
 
 table {
-  width: 70%;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
+  width: 60%;
+  margin-top: 1rem;
+  margin-bottom: 5%;
+}
+
+
+mat-form-field {
+  margin: auto;
+  width: 20%;
+  padding: 0.1em 1em;
+  font-size: larger;
+}
+
+
+.submit-button {
+  padding: 0 1rem;
+  margin-left: 1rem;
+}
+
+
+.th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+  padding-left: 15%
+}
+
+
+.mat-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 th {
   background:  #ff4081;
   color: white;
+}
+
+.main-container {
+  width: 100%;
+  margin: 3% auto auto;
+
+  margin-left: 21%
 }

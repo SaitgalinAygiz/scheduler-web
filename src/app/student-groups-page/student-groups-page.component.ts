@@ -1,23 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {GroupService} from '../shared/components/group.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {GroupCreateInterface} from '../shared/interfaces/group-create.interface';
 
-export interface PeriodicElement {
+export interface GroupTable {
   name: string;
   position: number;
-  course: number;
-  studentsCount: string;
+  status: string;
+  studentsCount: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'ПКС-21', course: 2, studentsCount: '33'},
-  {position: 2, name: 'ПКС-41', course: 4, studentsCount: '22'},
-  {position: 3, name: 'КСК-20', course: 2, studentsCount: '32'},
-  {position: 4, name: 'КСК-24', course: 2, studentsCount: '44'},
-  {position: 5, name: 'МКК-14', course: 1, studentsCount: '41'},
-  {position: 6, name: 'ПБ-14', course: 1, studentsCount: '10'},
-  {position: 7, name: 'ПБ-20', course: 2, studentsCount: '23'}
-  ];
 
 @Component({
   selector: 'app-student-groups-page',
@@ -27,13 +21,89 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class StudentGroupsPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'course', 'studentsCount'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(public groupService: GroupService) {
+  }
+
+  displayedColumns: string[] = ['position', 'name', 'status', 'studentsCount', 'deleteButtons'];
+
+  dataSource: MatTableDataSource<any>;
+  form: FormGroup;
+  submitted = false;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl(null, Validators.required),
+    });
+
+    this.dataSource = this.groupsFromServer();
     this.dataSource.sort = this.sort;
   }
 
+  groupsFromServer() {
+    const groups = this.groupService.allGroups();
+
+    const groupData: GroupTable[] = [
+    ];
+    let counter = 0;
+    groups.forEach((group) => {
+
+      const groupTableElement: GroupTable = {
+        name: group.name,
+        position: ++counter,
+        status: group.status,
+        studentsCount: group.students.length
+      };
+      groupData.push(groupTableElement);
+    });
+
+    return new MatTableDataSource(groupData);
+  }
+
+  async createGroup() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    const groupInput: GroupCreateInterface = {
+      name: this.form.value.name,
+    };
+
+    this.submitted = true;
+
+    const group = await this.groupService
+      .createGroup(groupInput)
+      .toPromise();
+
+    if (group === null) {
+      this.submitted = false;
+      return;
+    } else {
+      const groupInfoTable: GroupTable = {
+        name: group.name,
+        position: this.dataSource.data.length + 1,
+        status: group.status,
+        studentsCount: 0
+      };
+      this.dataSource.data.push(groupInfoTable);
+      this.dataSource._updateChangeSubscription();
+      this.submitted = false;
+      this.form.value.name = '';
+    }
+  }
+
+
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  deleteGroup(name: string) {
+    this.groupService.deleteGroup(name).then(() => {
+        this.dataSource.data = this.dataSource.data
+          .filter(element => element.name !== name);
+        this.dataSource._updateChangeSubscription();
+      }
+    );
+  }
 }

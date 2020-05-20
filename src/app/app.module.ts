@@ -28,6 +28,7 @@ import { StudentListPageComponent } from './student-list-page/student-list-page.
 import {MatSortModule} from '@angular/material/sort';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { TeachersPageComponent } from './teachers-page/teachers-page.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     MainLayoutComponent,
     LoginPageComponent,
     StudentGroupsPageComponent,
-    StudentListPageComponent
+    StudentListPageComponent,
+    TeachersPageComponent
   ],
   imports: [
     BrowserModule,

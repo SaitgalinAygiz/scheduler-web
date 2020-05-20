@@ -15,7 +15,7 @@ mat-form-field {
 
 table {
   margin-top: 1em;
-  width: 60%;
+  width: 40%;
   margin-bottom: 10%
 }
 
@@ -43,7 +43,8 @@ th {
   padding-bottom: 0.5rem;
 }
 
-.th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
-  padding-left: 15%
+img {
+  width: 300px;
+  height: 200px;
 }
 

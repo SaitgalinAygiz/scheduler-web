@@ -10,15 +10,13 @@ import {StudentCreateInterface} from '../shared/interfaces/student-create.interf
 import {BehaviorSubject, Subject} from 'rxjs';
 
 
-
 @Component({
   selector: 'app-student-list-page',
   templateUrl: './student-list-page.component.html',
   styleUrls: ['./student-list-page.component.css']
 })
 export class StudentListPageComponent implements OnInit {
-  STUDENT_DATA: StudentInterface[] = [
-  ];
+
   constructor(
     public studentService: StudentService,
     public groupService: GroupService
@@ -28,15 +26,17 @@ export class StudentListPageComponent implements OnInit {
   groupSelect: GroupSelectInterface[] = [];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  dataSource = this.studentsFromServer();
   form: FormGroup;
   submitted = false;
+  dataSource: MatTableDataSource<any> = this.studentsFromServer();
 
 
   studentsFromServer() {
+    const STUDENT_DATA: StudentInterface[] = [
+    ];
     const students = this.studentService.allStudents();
-    students.forEach((student) => this.STUDENT_DATA.push(student));
-    return new MatTableDataSource(this.STUDENT_DATA);
+    students.forEach((student) => STUDENT_DATA.push(student));
+    return new MatTableDataSource(STUDENT_DATA);
   }
 
   async createStudent() {
@@ -61,7 +61,6 @@ export class StudentListPageComponent implements OnInit {
     } else {
       this.dataSource.data.push(student);
       this.dataSource._updateChangeSubscription();
-
       this.submitted = false;
       this.form.value.name = '';
     }
@@ -72,17 +71,27 @@ export class StudentListPageComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       group: new FormControl(null, Validators.required)
     });
+    this.dataSource = this.studentsFromServer();
 
     this.groupSelect = this.groupService.allGroups();
 
     this.dataSource.sort = this.sort;
+    this.dataSource._updateChangeSubscription();
+
   }
 
   deleteStudent(id: string) {
-    this.studentService.deleteStudent(id);
+    this.studentService.deleteStudent(id).then(() => {
 
-    this.dataSource.data.filter(element => element._id !== id);
-    this.dataSource._updateChangeSubscription();
+        this.dataSource.data = this.dataSource.data.filter(element => element._id !== id);
+        this.dataSource._updateChangeSubscription();
+    }
+    );
+  }
+
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
 
