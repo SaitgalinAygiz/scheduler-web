@@ -6,6 +6,7 @@ import {StudentGroupsPageComponent} from './student-groups-page/student-groups-p
 import {AuthGuard} from './shared/services/auth.guard';
 import {StudentListPageComponent} from './student-list-page/student-list-page.component';
 import {TeachersPageComponent} from './teachers-page/teachers-page.component';
+import {ConsultationsPageComponent} from './consultations-page/consultations-page.component';
 
 const routes: Routes = [
   {path: '', component: MainLayoutComponent, children: [
@@ -13,7 +14,8 @@ const routes: Routes = [
       {path: 'login', component: LoginPageComponent},
       {path: 'groups', component: StudentGroupsPageComponent, canActivate: [AuthGuard]},
       {path: 'student-list', component: StudentListPageComponent, canActivate: [AuthGuard]},
-      {path: 'teachers', component: TeachersPageComponent, canActivate: [AuthGuard]}
+      {path: 'teachers', component: TeachersPageComponent, canActivate: [AuthGuard]},
+      {path: 'consultations', component: ConsultationsPageComponent, canActivate: [AuthGuard]}
     ]
   }
 ];

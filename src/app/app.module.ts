@@ -29,6 +29,14 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { TeachersPageComponent } from './teachers-page/teachers-page.component';
+import { ConsultationsPageComponent } from './consultations-page/consultations-page.component';
+import {MatStepperModule} from '@angular/material/stepper';
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -37,31 +45,33 @@ import { TeachersPageComponent } from './teachers-page/teachers-page.component';
     LoginPageComponent,
     StudentGroupsPageComponent,
     StudentListPageComponent,
-    TeachersPageComponent
+    TeachersPageComponent,
+    ConsultationsPageComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    RouterModule,
-    AppRoutingModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatOptionModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule,
+        AppRoutingModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatStepperModule
+    ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
