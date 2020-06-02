@@ -31,12 +31,12 @@ export class StudentService {
   }
 
 
-
   // TODO: не бейте..
   public createStudent(studentInput: StudentCreateInterface): Observable<StudentInterface> {
     const body = {
       name: studentInput.name,
-      group: studentInput.group
+      group: studentInput.group,
+      phoneNumber: studentInput.phoneNumber
     };
 
     return this.http.post(`${environment.serverUrl}/student/create`, body)
@@ -44,7 +44,7 @@ export class StudentService {
         map((data: StudentInterface) => {
           return data;
         }), catchError ( error => {
-          return throwError(`Что-то пошло не так, ${error}`);
+          return throwError(`Что-то пошло не так с запросом, ${error.message}`);
         })
       );
   }

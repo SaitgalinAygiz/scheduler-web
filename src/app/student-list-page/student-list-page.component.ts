@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {StudentService} from '../shared/components/student.service';
@@ -7,8 +7,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GroupService} from '../shared/components/group.service';
 import {GroupSelectInterface} from './group-select-interface';
 import {StudentCreateInterface} from '../shared/interfaces/student-create.interface';
-import {BehaviorSubject, Subject} from 'rxjs';
-
 
 @Component({
   selector: 'app-student-list-page',
@@ -22,14 +20,13 @@ export class StudentListPageComponent implements OnInit {
     public groupService: GroupService
   ) {
   }
-  displayedColumns: string[] = ['name', 'group', 'deleteButtons'];
+  displayedColumns: string[] = ['name', 'group', 'phoneNumber', 'deleteButtons'];
   groupSelect: GroupSelectInterface[] = [];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   form: FormGroup;
   submitted = false;
   dataSource: MatTableDataSource<any> = this.studentsFromServer();
-
 
   studentsFromServer() {
     const STUDENT_DATA: StudentInterface[] = [
@@ -49,6 +46,7 @@ export class StudentListPageComponent implements OnInit {
     const studentInput: StudentCreateInterface = {
       name: this.form.value.name,
       group: this.form.value.group.name,
+      phoneNumber: this.form.value.phoneNumber
     };
 
     const student = await this.studentService

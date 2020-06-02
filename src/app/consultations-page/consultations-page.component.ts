@@ -7,9 +7,12 @@ import {FormGroup, Validators, FormBuilder} from '@angular/forms';
   styleUrls: ['./consultations-page.component.css']
 })
 export class ConsultationsPageComponent implements OnInit {
+  students: string[] = ['Саитгалин Айгиз', 'Владимир Путин', 'Алсу Гимадиева', 'ЫА СУКА', 'ШЛЮХА'];
+  selectedStudents: string[] = [];
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
 
   // tslint:disable-next-line:variable-name
   constructor(private _formBuilder: FormBuilder) { }
@@ -20,6 +23,9 @@ export class ConsultationsPageComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
     });
   }
 

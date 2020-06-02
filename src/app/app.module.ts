@@ -37,6 +37,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -48,30 +49,34 @@ import {
     TeachersPageComponent,
     ConsultationsPageComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        RouterModule,
-        AppRoutingModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatListModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatStepperModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule,
+    AppRoutingModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatStepperModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+    MatDatepickerModule
+  ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })

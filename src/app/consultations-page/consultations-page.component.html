@@ -8,33 +8,48 @@
         <input matInput placeholder="Экзамен, консультация и т.п." formControlName="firstCtrl" required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Далее</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>Дата и время консультации</ng-template>
       <mat-form-field>
-        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
-               [min]="minDate" [max]="maxDate" [disabled]="disabled">
+        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Выберите дату"  >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour"
-                                 [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi" [color]="color"
-                                 [enableMeridian]="enableMeridian" [disableMinute]="disableMinute" [hideTime]="hideTime">
+        <ngx-mat-datetime-picker #picker >
         </ngx-mat-datetime-picker>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Далее</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Студенты</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Выберите студентов" [value]="students.toString()" >
+        <mat-selection-list [formControl]="selectedStudents">
+          <mat-list-option *ngFor="let student of students">
+            {{student}}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Далее</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>Готово</ng-template>
+    <p>Консультация успешно добавлена</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious>Назад</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
